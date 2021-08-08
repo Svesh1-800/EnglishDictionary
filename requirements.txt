@@ -1,1 +1,2 @@
-django
+Django
+PyDictionary==2.0.1
