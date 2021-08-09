@@ -4,5 +4,12 @@
 {% block content %}
 
 {% include 'inc\search-field.html' %}
-
+<div>
+  <h1>{{ word }} </h1>
+  <ol>
+    {% for mean in meanings %}
+    <p><li>{{ mean }}</li></p>
+    {% endfor %}
+  </ol>
+</div>
 {% endblock content %}

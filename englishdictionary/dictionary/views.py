@@ -16,10 +16,12 @@ class WordFindView(View):
         dictionary = PyDictionary()
         meaning = dictionary.meaning(unknown_word)
         context = {
-            "meaning": meaning,
+            "meanings": meaning['Noun'],
+            "word": unknown_word,
         }
-        print(meaning)
-        return redirect("dictionary:index")
+        print(context['meanings'])
+        print(len(context['meanings']))
+        return render(request,template_name='dictionary/index.html', context= context)
         
     
         
