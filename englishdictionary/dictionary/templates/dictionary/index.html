@@ -3,11 +3,6 @@
 
 {% block content %}
 
-<div class="d4">
-  <form action="WordFind">
-    <input type="text" name="unknown-word" placeholder="Enter the word...">
-    <button type="submit"></button>
-  </form>
-</div>
+{% include 'inc\search-field.html' %}
 
 {% endblock content %}
