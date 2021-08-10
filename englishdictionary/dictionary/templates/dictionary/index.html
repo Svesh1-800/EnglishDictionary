@@ -2,14 +2,35 @@
 {% block title %}Dictionary{% endblock title %}
 
 {% block content %}
-
+<style>
+  .container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+</style>
 {% include 'inc\search-field.html' %}
 <div>
-  <h1>{{ word }} </h1>
-  <ol>
-    {% for mean in meanings %}
-    <p><li>{{ mean }}</li></p>
+  <span class="container">
+  <h1 style="font-size: xx-large;">{{ word }} </h1>
+  </span>
+  <span class="container">
+    {% if meanings %}
+    <ul>
+    {% for key,meanings in meanings.items %}
+      <li><p style="font-size:x-large;">{{ key }}</p></li>
+    <ol>
+    {% for value in meanings %}
+    <li><p style="font-size: large;">{{ value }}</p></li>
     {% endfor %}
-  </ol>
+    </ol>
+    {% endfor %}
+  </ul>
+    {% else %}
+    <p style="color:#f15b42;font-size: x-large;">such word doesn't exist in our dictionary</p>
+    {% endif %}
+  
+  </span>
 </div>
 {% endblock content %}

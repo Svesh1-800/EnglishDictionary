@@ -14,13 +14,15 @@ class WordFindView(View):
         
         unknown_word = request.GET.get("unknown-word")
         dictionary = PyDictionary()
-        meaning = dictionary.meaning(unknown_word)
+        meanings = dictionary.meaning(unknown_word)
+        synonums = dictionary.synonym(unknown_word)
         context = {
-            "meanings": meaning['Noun'],
-            "word": unknown_word,
+            "meanings" : meanings,
+            "synonums": synonums,
+            "word": unknown_word.title()
         }
-        print(context['meanings'])
-        print(len(context['meanings']))
+        print(meanings)
+        
         return render(request,template_name='dictionary/index.html', context= context)
         
     
