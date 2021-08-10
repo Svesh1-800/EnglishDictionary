@@ -1,6 +1,5 @@
 from typing import get_args
-from django.shortcuts import redirect, render
-from django.http import HttpResponse, request
+from django.shortcuts import render
 from django.views.generic import View
 
 from PyDictionary import PyDictionary
@@ -21,7 +20,7 @@ class WordFindView(View):
             "synonums": synonums,
             "word": unknown_word.title()
         }
-        print(meanings)
+        
         
         return render(request,template_name='dictionary/index.html', context= context)
         
