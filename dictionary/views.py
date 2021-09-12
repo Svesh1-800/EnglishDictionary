@@ -20,7 +20,10 @@ class WordFindView(View):
             "synonums": synonums,
             "word": unknown_word.title()
         }
-        
+        if context["meanings"] is None:
+            context["empty_response"] = True
+        else:
+            context["empty_response"] = False
         
         return render(request,template_name='dictionary/index.html', context= context)
         

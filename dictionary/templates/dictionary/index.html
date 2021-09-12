@@ -15,8 +15,10 @@
   <span class="container">
     <h1 style="font-size: xx-large;">{{ word }} </h1>
   </span>
-  <span class="container">
-    {% if meanings %}
+
+
+    {% if empty_response is False %}
+    <span class="container">
     <ul>
       {% for key,meanings in meanings.items %}
       <li>
@@ -28,13 +30,15 @@
           <p style="font-size: large;">{{ value }}</p>
         </li>
         {% endfor %}
-      </ol>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <p style="color:#f15b42;font-size: x-large;">such word doesn't exist in our dictionary</p>
+      </ol>  
+      {% endfor %}  
+      </ul>
+      {% elif empty_response is True %}
+      
+      <p style="color:#f15b42;font-size: x-large;text-align: center;">such word doesn't exist in our dictionary</p>
+     
+    
     {% endif %}
-
-  </span>
+  
 </div>
 {% endblock content %}
