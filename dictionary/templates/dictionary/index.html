@@ -11,16 +11,19 @@
   }
 </style>
 {% include 'inc\search-field.html' %}
+{% if empty_response is False %}
 <div>
-  <span class="container">
-    <h1 style="font-size: xx-large;">{{ word }} </h1>
-  </span>
+  <div class="container">
+    <h1 style="font-size: xx-large;">{{ word|title }} </h1>
+  </div>
+{% endif %}
 
 
     {% if empty_response is False %}
     <span class="container">
     <ul>
       {% for key,meanings in meanings.items %}
+      
       <li>
         <p style="font-size:x-large;">{{ key }}</p>
       </li>
@@ -34,8 +37,10 @@
       {% endfor %}  
       </ul>
       {% elif empty_response is True %}
+      <div class="container" style="margin: 0 auto;">
+        <p style="color:#f15b42;font-size: x-large;text-align: center;">such word doesn't exist in our dictionary</p>
+      </div>
       
-      <p style="color:#f15b42;font-size: x-large;text-align: center;">such word doesn't exist in our dictionary</p>
      
     
     {% endif %}

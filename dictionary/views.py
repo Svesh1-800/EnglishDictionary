@@ -18,7 +18,7 @@ class WordFindView(View):
         context = {
             "meanings" : meanings,
             "synonums": synonums,
-            "word": unknown_word.title()
+            "word": unknown_word,
         }
         if context["meanings"] is None:
             context["empty_response"] = True
