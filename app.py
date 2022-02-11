@@ -1,17 +1,13 @@
-from typing import get_args
-from django.shortcuts import render
-from django.views.generic import View
-
+from flask import Flask, request, url_for, render_template
 from PyDictionary import PyDictionary
+app = Flask(__name__)
 
-class IndexView(View):
-    def get(self,request):
-        return render(request, template_name='dictionary/index.html')
-
-class WordFindView(View):
-    def get(self,request,*args, **kwargs):
-        
-        unknown_word = request.GET.get("unknown-word")
+@app.route('/', methods=['GET','POST'])
+def index():
+    if request.method=='GET':
+        return render_template('index.html')
+    else:
+        unknown_word = request.form["unknown-word"]
         dictionary = PyDictionary()
         meanings = dictionary.meaning(unknown_word)
         synonums = dictionary.synonym(unknown_word)
@@ -25,7 +21,8 @@ class WordFindView(View):
         else:
             context["empty_response"] = False
         
-        return render(request,template_name='dictionary/index.html', context= context)
-        
+        return render_template('index.html', context= context)
     
-        
+
+if __name__=='__main__':
+    app.run()

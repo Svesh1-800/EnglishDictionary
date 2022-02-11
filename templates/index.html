@@ -10,19 +10,19 @@
 
   }
 </style>
-{% include 'inc\search-field.html' %}
-{% if empty_response is False %}
+{% include 'inc/search-field.html' %}
+{% if context.empty_response == False %}
 <div>
   <div class="container">
-    <h1 style="font-size: xx-large;">{{ word|title }} </h1>
+    <h1 style="font-size: xx-large;">{{ context.word|title }} </h1>
   </div>
 {% endif %}
 
 
-    {% if empty_response is False %}
+    {% if context.empty_response == False %}
     <span class="container">
     <ul>
-      {% for key,meanings in meanings.items %}
+      {% for key,meanings  in context.meanings.items() %}
       
       <li>
         <p style="font-size:x-large;">{{ key }}</p>
@@ -36,7 +36,7 @@
       </ol>  
       {% endfor %}  
       </ul>
-      {% elif empty_response is True %}
+      {% elif context.empty_response == True %}
       <div class="container" style="margin: 0 auto;">
         <p style="color:#f15b42;font-size: x-large;text-align: center;">such word doesn't exist in our dictionary</p>
       </div>

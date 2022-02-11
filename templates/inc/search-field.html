@@ -1,6 +1,6 @@
 <div class="d4">
-  <form action="word" method="get">
-    <input type="text" name="unknown-word" value = {{ word }} placeholder="Enter the word...">
+  <form action="/", method="post">
+    <input type="text" name="unknown-word" value="{{ context.word }}"  placeholder="Enter the word...">
     <button type="submit"></button>
   </form>
 </div>
