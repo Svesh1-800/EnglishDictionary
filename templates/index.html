@@ -2,48 +2,30 @@
 {% block title %}Dictionary{% endblock title %}
 
 {% block content %}
-<style>
-  .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
-  }
-</style>
 {% include 'inc/search-field.html' %}
-{% if context.empty_response == False %}
-<div>
-  <div class="container">
-    <h1 style="font-size: xx-large;">{{ context.word|title }} </h1>
-  </div>
+
+{% if flag==True %}
+<div class="container">
+
+  {% for speech, definitions in meanings.items() %}
+  <fieldset class="block">
+
+    <legend>
+      <h4>{{ speech }}</h4>
+    </legend>
+    {% for def in definitions %}
+    <p>{{def}}</p>
+    {% endfor %}
+  </fieldset>
+  {% endfor %}
+
+</div>
+
+{% elif flag==False %}
+<div class="cotainer">
+  <p class="error-text">WE DON'T KNOW SUCH WORD</p>
+</div>
 {% endif %}
 
-
-    {% if context.empty_response == False %}
-    <span class="container">
-    <ul>
-      {% for key,meanings  in context.meanings.items() %}
-      
-      <li>
-        <p style="font-size:x-large;">{{ key }}</p>
-      </li>
-      <ol>
-        {% for value in meanings %}
-        <li>
-          <p style="font-size: large;">{{ value }}</p>
-        </li>
-        {% endfor %}
-      </ol>  
-      {% endfor %}  
-      </ul>
-      {% elif context.empty_response == True %}
-      <div class="container" style="margin: 0 auto;">
-        <p style="color:#f15b42;font-size: x-large;text-align: center;">such word doesn't exist in our dictionary</p>
-      </div>
-      
-     
-    
-    {% endif %}
-  
-</div>
 {% endblock content %}
