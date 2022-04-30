@@ -12,7 +12,22 @@ def index():
         dictionary = PyDictionary()
         meanings = dictionary.meaning(unknown_word)
         synonums = dictionary.synonym(unknown_word)
-       
+
+        # get rid of '('
+        for key,value in meanings.items():
+           
+            good_translated = list()
+            for ind,value in enumerate(value):
+                splited = value.split('(')
+                print(splited)
+                if len(splited[0])!=0:
+                    if splited[0][0]!='(':
+                        good_translated.append(splited[0])
+            if len(good_translated)==0:
+                print("si")
+                del meanings[key]
+            else:
+                meanings[key] = good_translated
         if meanings is None:
             flag= False
             
@@ -23,7 +38,6 @@ def index():
         "flag":flag,
         }
         return render_template('index.html',**context )
-
 
 if __name__=='__main__':
     app.run(debug=True)

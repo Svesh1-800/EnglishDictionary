@@ -1,7 +1,7 @@
 # English Dictionary
 
 [![Python Version](https://img.shields.io/badge/python-3.9.5-brightgreen.svg)](https://python.org)
-[![Django Version](https://img.shields.io/badge/django-3.2.6-brightgreen.svg)](https://djangoproject.com)
+[![Flask Version](https://img.shields.io/badge/flask-2.0.2-brightgreen.svg)](https://flask.palletsprojects.com/en/2.1.x/)
 [![PyDictionary Version](https://img.shields.io/badge/pydictionary-2.0.1-brightgreen.svg)](https://pypi.org/project/PyDictionary/)
 
 ## **What is the use of an English-English dictionary for studying?**
