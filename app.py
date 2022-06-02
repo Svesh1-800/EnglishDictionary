@@ -1,43 +1,11 @@
-from flask import Flask, request, url_for, render_template
-from PyDictionary import PyDictionary
+import config
+import os
+from flask import Flask
+
+from dct.views import dct
+
+
 app = Flask(__name__)
-
-@app.route('/', methods=['GET','POST'])
-def index():
-    if request.method=='GET':
-        return render_template('index.html')
-    else:
-        flag = True
-        unknown_word = request.form["unknown-word"]
-        dictionary = PyDictionary()
-        meanings = dictionary.meaning(unknown_word)
-        synonums = dictionary.synonym(unknown_word)
-
-        # get rid of '('
-        for key,value in meanings.items():
-           
-            good_translated = list()
-            for ind,value in enumerate(value):
-                splited = value.split('(')
-                print(splited)
-                if len(splited[0])!=0:
-                    if splited[0][0]!='(':
-                        good_translated.append(splited[0])
-            if len(good_translated)==0:
-                print("si")
-                del meanings[key]
-            else:
-                meanings[key] = good_translated
-        if meanings is None:
-            flag= False
-            
-        context = {
-        "meanings" : meanings,
-        "synonums": synonums,
-        "unknown_word": unknown_word,
-        "flag":flag,
-        }
-        return render_template('index.html',**context )
-
-if __name__=='__main__':
-    app.run(debug=True)
+app.config.from_object(os.environ.get('FLASK_ENV') or 'config.DevelopementConfig')
+app.register_blueprint(dct)
+ 
